@@ -7,6 +7,7 @@ namespace Library.WebAPI.Common
         public string Message { get; set; }
         public override string ToString()
         {
+            //kovertuj JSON u string
             return JsonConvert.SerializeObject(this);
         }
     }

@@ -7,7 +7,7 @@ namespace Library.WebAPI.Interfaces
     {
         PagedResult<BookDto> GetListOfBooks(BookSearchDto search);
 
-        public List<BookDto> GetListOfAllBooks();
+        List<BookDto> GetListOfAllBooks();
 
         BookDto GetBookById(int id);
 

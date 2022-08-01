@@ -24,10 +24,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    //ako je Development ukljuci UseDeveloperExceptionPage
     app.UseDeveloperExceptionPage();
 }
 else
 {
+    //ako je Production ukljuci ExceptionMiddleware
     app.UseMiddleware<ExceptionMiddleware>();
 }
 

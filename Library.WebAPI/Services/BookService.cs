@@ -68,20 +68,30 @@ namespace Library.WebAPI.Services
         }
         public PagedResult<BookDto> GetListOfBooks(BookSearchDto search)
         {
-            var query = _context.Books.AsQueryable();
-            
+            /*
+            var databaseEntityList = _context.Books.ToList();
+            var result = new PagedResult<BookDto>;
+            result.TotalCount = databaseEntityList.Count();
+            return _mapper.Map<List<BookDto>>(databaseEntityList);
+             */
+            //AsQueryable - pretraga u bazi, AsEnumerable - pretraga u memoriji 
+            var query = _context.Books.AsQueryable(); //select * from Books -> _context.Books
+           // var query1 = _context.Books.AsEnumerable(); //vrati u memoriju pa pretrazuje
+
             if (!string.IsNullOrEmpty(search.Title))
             {
                 query = query.Where(x=>x.Title.ToLower() == search.Title.ToLower());
             }
 
-            PagedResult<BookDto> result = new();
-            result.TotalCount = query.LongCount();
+            PagedResult<BookDto> result = new();          
+            result.TotalCount = query.LongCount(); //ukupan broj recorda, longCount ako predje broj int recorda
 
+            //preskoci podatke -> (search.Page * search.PageSize)            
             query = query.Skip(search.Page * search.PageSize)
-                .Take(search.PageSize);
+                .Take(search.PageSize);//i vrati PageSize - 10 recorda po stranici default vrijednost
 
             List<Book> res = query.ToList();
+            //pretvaranje iz Book u BookDto, List<Book> -> List<BookDto>
             result.Data = _mapper.Map<List<BookDto>>(res);
             return result;
         }

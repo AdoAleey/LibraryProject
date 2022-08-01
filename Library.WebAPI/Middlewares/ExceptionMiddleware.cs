@@ -43,7 +43,7 @@ namespace Library.WebAPI.Middlewares
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
-
+            //pretvori objekat iz JSON u string pomocu overrided metode ToString iz Klase ErrorDetail
             return context.Response.WriteAsync(new ErrorDetail { Message = message}.ToString());
         }
     }

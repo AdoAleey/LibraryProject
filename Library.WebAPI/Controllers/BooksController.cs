@@ -27,6 +27,7 @@ namespace Library.WebAPI.Controllers
         [HttpGet("")]
         public PagedResult<BookDto> GetBooks([FromQuery] BookSearchDto search)
         {
+            //doci ce podatak iz queryStringa [FromQuery], queryStringa: 'Books?PageSize=0&Page=1&Title=King%20Kong'
             _logger.LogInformation("Ovo je log: GetBooks kontrolera");
             return _bookService.GetListOfBooks(search);
         }
@@ -34,7 +35,7 @@ namespace Library.WebAPI.Controllers
         [HttpGet("all")]
         public List<BookDto> GetAllBooks()
         {
-            _logger.LogInformation("##############Ovo je log: GetListOfAllBooks kontrolera!#####################");
+            _logger.LogInformation("###Ovo je log: GetListOfAllBooks kontrolera!###");
             return _bookService.GetListOfAllBooks();
         }
 

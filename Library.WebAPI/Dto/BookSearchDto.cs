@@ -1,7 +1,7 @@
 ﻿namespace Library.WebAPI.Dto
 {
     public class BookSearchDto
-    {
+    {        
         /// <summary>
         /// Broj rezultata po stranici
         /// </summary>
